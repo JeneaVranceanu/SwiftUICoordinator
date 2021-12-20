@@ -25,6 +25,8 @@
 		D67B09EA276DD8F200035DED /* NavigationStackId.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09E8276DD8F200035DED /* NavigationStackId.swift */; };
 		D67B09EC276E428700035DED /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09EB276E428700035DED /* Debouncer.swift */; };
 		D67B09ED276E428700035DED /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09EB276E428700035DED /* Debouncer.swift */; };
+		D69687602771320E00FA99C6 /* View+DestinationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696875F2771320E00FA99C6 /* View+DestinationExtension.swift */; };
+		D69687612771320E00FA99C6 /* View+DestinationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D696875F2771320E00FA99C6 /* View+DestinationExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,7 @@
 		D67B09E5276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorNavigationViewLinkModel.swift; sourceTree = "<group>"; };
 		D67B09E8276DD8F200035DED /* NavigationStackId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackId.swift; sourceTree = "<group>"; };
 		D67B09EB276E428700035DED /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
+		D696875F2771320E00FA99C6 /* View+DestinationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+DestinationExtension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,7 @@
 		D6099AF327327B52001C3457 /* destination */ = {
 			isa = PBXGroup;
 			children = (
+				D696875F2771320E00FA99C6 /* View+DestinationExtension.swift */,
 				D6099AF427327B5D001C3457 /* Destination.swift */,
 			);
 			path = destination;
@@ -247,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6099AD127327A50001C3457 /* SwiftUICoordinator.docc in Sources */,
+				D69687602771320E00FA99C6 /* View+DestinationExtension.swift in Sources */,
 				D6099AFE27327D77001C3457 /* CoordinatorNavigationView.swift in Sources */,
 				D67B09EC276E428700035DED /* Debouncer.swift in Sources */,
 				D67B09DF276DD82100035DED /* Coordinator.swift in Sources */,
@@ -262,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6099AFF27327D78001C3457 /* Destination.swift in Sources */,
+				D69687612771320E00FA99C6 /* View+DestinationExtension.swift in Sources */,
 				D6099B0127327D78001C3457 /* CoordinatorNavigationView.swift in Sources */,
 				D67B09ED276E428700035DED /* Debouncer.swift in Sources */,
 				D67B09E0276DD82100035DED /* Coordinator.swift in Sources */,

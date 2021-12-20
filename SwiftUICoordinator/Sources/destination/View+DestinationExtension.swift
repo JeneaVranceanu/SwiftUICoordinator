@@ -1,6 +1,6 @@
 //
-//  MainCoordinatorImpl.swift
-//  Coordinator-Example
+//  View+DestinationExtension.swift
+//  SwiftUICoordinator
 //
 //  MIT License
 //
@@ -25,29 +25,14 @@
 //  SOFTWARE.
 //
 
+
 import Foundation
 import SwiftUI
-import SwiftUICoordinator
 
-public class MainCoordinatorImpl: Coordinator, MainCoordinator {
-    
-    func navigateToSecondView(navTitle: String) {
-        navigateTo(
-            SecondDestinationView()
-                .navigationTitle(navTitle)
-                .navigationBarTitleDisplayMode([NavigationBarItem.TitleDisplayMode.large, NavigationBarItem.TitleDisplayMode.inline].randomElement()!)
-                .asDestination()
-        )
-    }
-    
-    func navigateToThirdView(navTitle: String) {
-        navigateTo(
-            ThirdDestinationView()
-                .navigationTitle(navTitle)
-                .navigationBarTitleDisplayMode([NavigationBarItem.TitleDisplayMode.large, NavigationBarItem.TitleDisplayMode.inline].randomElement()!)
-                .asDestination()
-        )
+public extension View {
+    func asDestination() -> DestinationWrapper {
+        DestinationWrapper(DestinationCreator({
+            AnyView(self)
+        }))
     }
 }
-
-

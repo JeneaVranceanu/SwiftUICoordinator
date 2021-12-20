@@ -29,18 +29,12 @@ import SwiftUI
 import SwiftUICoordinator
 
 class SecondDestinationViewModel: ObservableObject {
-    let secondDestinationAgain = DestinationWrapper(DestinationCreator({
-        AnyView(
-            FirstDestinationView()
-                .navigationBarTitleDisplayMode(.large)
-                .navigationTitle("Running circles, huh?")
-        )
-    }))
-    let thirdDestination = DestinationWrapper(DestinationCreator({
-        AnyView(
-            ThirdDestinationView()
-        )
-    }))
+    let secondDestinationAgain = FirstDestinationView()
+        .navigationBarTitleDisplayMode(.large)
+        .navigationTitle("Running circles, huh?")
+        .asDestination()
+    
+    let thirdDestination = ThirdDestinationView().asDestination()
     
     @Published var borderColor1: Color = Color(red: Double.random(in: 0...1),
                                               green: Double.random(in: 0...1),

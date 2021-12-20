@@ -30,11 +30,7 @@ import SwiftUICoordinator
 
 class FirstDestinationViewModel: ObservableObject {
     let id = UUID().uuidString
-    let secondDestination = DestinationWrapper(DestinationCreator({
-        AnyView(
-            SecondDestinationView()
-        )
-    }))
+    let secondDestination = SecondDestinationView().asDestination()
     
     @Published var borderColor: Color = Color(red: Double.random(in: 0...1),
                                               green: Double.random(in: 0...1),
@@ -60,7 +56,7 @@ struct FirstDestinationView: View {
     var body: some View {
         CoordinatorNavigationViewLink { coordinator in
             Button {
-                coordinator.navigateTo(viewModel.secondDestination)
+                coordinator.navigateTo(SecondDestinationView().asDestination())
             } label: {
                 HStack {
                     Text("Navigate to second destination")
