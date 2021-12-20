@@ -52,6 +52,7 @@ public class DestinationHandle: Equatable {
  Wrapper for View creation.
  */
 public class DestinationCreator {
+    
     private let instance: () -> AnyView
     
     public init(_ instance: @escaping () -> AnyView) {
@@ -64,15 +65,16 @@ public class DestinationCreator {
     }
 }
 
-/**
- Observable destination ID.
- */
 public class DestinationID: ObservableObject, Equatable, Hashable {
     public static func == (lhs: DestinationID, rhs: DestinationID) -> Bool {
         return lhs.id == rhs.id
     }
     
-    public let id = UUID()
+    public let id: String
+    
+    public init(_ id: String = UUID().uuidString) {
+        self.id = id
+    }
     
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
@@ -80,14 +82,14 @@ public class DestinationID: ObservableObject, Equatable, Hashable {
 }
 
 /**
- Wrapper for `some View` that is responsible for the logic of attaching/detaching a destination (view) to/from view hierarchy.
+ Contains all the logic for attaching/detaching a destination (view) to hierarchy.
  */
 public class DestinationWrapper: ObservableObject, Equatable, Hashable {
     public static func == (lhs: DestinationWrapper, rhs: DestinationWrapper) -> Bool {
         return lhs.id == rhs.id
     }
     
-    public let id = DestinationID()
+    public let id: DestinationID
     
     private let destinationCreator: DestinationCreator
     private var destinationHandle: DestinationHandle? = nil
@@ -106,10 +108,15 @@ public class DestinationWrapper: ObservableObject, Equatable, Hashable {
     
     public init(_ destinationCreator: DestinationCreator) {
         self.destinationCreator = destinationCreator
+        id = DestinationID()
     }
     
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+    /**
+     If the destination is dynamic, meaning it depends on the input, make sure that this input always has the same ID.
+     */
+    public init(_ destinationCreator: DestinationCreator, id: String) {
+        self.destinationCreator = destinationCreator
+        self.id = DestinationID(id)
     }
     
     public func isAttached() -> Bool {
@@ -126,6 +133,10 @@ public class DestinationWrapper: ObservableObject, Equatable, Hashable {
             return
         }
         self.destinationHandle = nil
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
     
     public func detach() {

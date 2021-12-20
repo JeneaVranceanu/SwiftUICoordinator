@@ -1,5 +1,5 @@
 //
-//  SwiftUICoordinator.h
+//  NavigationStackId.swift
 //  SwiftUICoordinator
 //
 //  MIT License
@@ -25,14 +25,22 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
 
-//! Project version number for SwiftUICoordinator.
-FOUNDATION_EXPORT double SwiftUICoordinatorVersionNumber;
-
-//! Project version string for SwiftUICoordinator.
-FOUNDATION_EXPORT const unsigned char SwiftUICoordinatorVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <SwiftUICoordinator/PublicHeader.h>
-
-
+/**
+ `NavigationStackId` specifies which stack (which ``SwiftUI.NavigationView``) it represents.
+ */
+public class NavigationStackId: Equatable {
+    public static func == (lhs: NavigationStackId, rhs: NavigationStackId) -> Bool {
+        lhs.internalId == rhs.internalId
+    }
+    
+    public static let main = NavigationStackId(UUID().uuidString)
+    public static let secondary = NavigationStackId(UUID().uuidString)
+    
+    public let internalId: String
+    
+    public init(_ id: String) {
+        internalId = id
+    }
+}

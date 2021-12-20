@@ -27,48 +27,36 @@
 
 import SwiftUI
 
+/// Wrapper around ``SwiftUI.NavigationView`` implementing coordinator pattern.
+/// This view reacts to changes in an observed coordinator stack and activates/deactivates respective ``NavigationViewLink``s.
 public struct CoordinatorNavigationView<Content> : View where Content : View  {
     
-    @ObservedObject private var coordinator = DestinationCoordinator.shared
-    @StateObject private var lastDestinationId: DestinationID = DestinationCoordinator.shared.lastDestinationID()
+    private var content: (Coordinator) -> Content
     
-    public var content: () -> Content
+    @StateObject private var coordinator: Coordinator
     
-    @State private var falseActive = Binding {
-        return false
-    } set: { _ in
-        // Ignored
-    }
-    
-    @inlinable public init(@ViewBuilder content: @escaping () -> Content) {
+    /// Initializer.
+    /// - Parameters:
+    ///   - id: ``NavigationStackId`` to use In
+    ///   - coordinator: injected coordinator created on side;
+    ///   - content: a @ViewBuilder of the initial destination (the first entry in the stack).
+    public init(id: NavigationStackId = .main,
+                coordinator: Coordinator? = nil,
+                @ViewBuilder content: @escaping (Coordinator) -> Content) {
         self.content = content
-    }
-    
-    @ViewBuilder
-    private func destination() -> some View {
-        if let destination: DestinationWrapper = coordinator.destination(after: lastDestinationId) {
-            destination.destination()
-        } else {
-            EmptyView()
-        }
+        _coordinator = StateObject(wrappedValue: coordinator ?? Coordinator(id: id))
     }
     
     public var body: some View {
-        ZStack {
-            content()
-            
-            NavigationLink(destination: destination(),
-                           isActive: coordinator.destination(after: lastDestinationId)?.isActive ?? falseActive) {
-                EmptyView()
+        NavigationView {
+            VStack {
+                content(coordinator)
             }
         }
-    }
-}
-
-struct CoordinatorNavigationView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoordinatorNavigationView {
-            EmptyView()
-        }
+        /// Setting navigation style fixes crashes related to EnvironmentObjects not being found.
+        /// Example of this issue being discussed online
+        /// https://www.hackingwithswift.com/forums/swiftui/environment-object-not-being-inherited-by-child-sometimes-and-app-crashes/269/9551
+        .navigationViewStyle(StackNavigationViewStyle())
+        .environmentObject(coordinator)
     }
 }

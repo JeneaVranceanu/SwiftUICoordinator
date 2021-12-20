@@ -12,13 +12,19 @@
 		D6099ADC27327A50001C3457 /* SwiftUICoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099ADB27327A50001C3457 /* SwiftUICoordinatorTests.swift */; };
 		D6099ADD27327A50001C3457 /* SwiftUICoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = D6099ACF27327A50001C3457 /* SwiftUICoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D6099AF527327B5D001C3457 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099AF427327B5D001C3457 /* Destination.swift */; };
-		D6099AFD27327D77001C3457 /* DestinationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099AFA27327D3D001C3457 /* DestinationCoordinator.swift */; };
 		D6099AFE27327D77001C3457 /* CoordinatorNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099AF927327D3B001C3457 /* CoordinatorNavigationView.swift */; };
 		D6099AFF27327D78001C3457 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099AF427327B5D001C3457 /* Destination.swift */; };
-		D6099B0027327D78001C3457 /* DestinationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099AFA27327D3D001C3457 /* DestinationCoordinator.swift */; };
 		D6099B0127327D78001C3457 /* CoordinatorNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099AF927327D3B001C3457 /* CoordinatorNavigationView.swift */; };
-		D6099B0227327E76001C3457 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099AF827327D1E001C3457 /* RootCoordinator.swift */; };
-		D6099B0327327E76001C3457 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099AF827327D1E001C3457 /* RootCoordinator.swift */; };
+		D67B09DF276DD82100035DED /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09DE276DD82100035DED /* Coordinator.swift */; };
+		D67B09E0276DD82100035DED /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09DE276DD82100035DED /* Coordinator.swift */; };
+		D67B09E2276DD87100035DED /* CoordinatorNavigationViewLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09E1276DD87100035DED /* CoordinatorNavigationViewLink.swift */; };
+		D67B09E3276DD87100035DED /* CoordinatorNavigationViewLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09E1276DD87100035DED /* CoordinatorNavigationViewLink.swift */; };
+		D67B09E6276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09E5276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift */; };
+		D67B09E7276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09E5276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift */; };
+		D67B09E9276DD8F200035DED /* NavigationStackId.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09E8276DD8F200035DED /* NavigationStackId.swift */; };
+		D67B09EA276DD8F200035DED /* NavigationStackId.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09E8276DD8F200035DED /* NavigationStackId.swift */; };
+		D67B09EC276E428700035DED /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09EB276E428700035DED /* Debouncer.swift */; };
+		D67B09ED276E428700035DED /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B09EB276E428700035DED /* Debouncer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,9 +44,12 @@
 		D6099AD627327A50001C3457 /* SwiftUICoordinatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUICoordinatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6099ADB27327A50001C3457 /* SwiftUICoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICoordinatorTests.swift; sourceTree = "<group>"; };
 		D6099AF427327B5D001C3457 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
-		D6099AF827327D1E001C3457 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		D6099AF927327D3B001C3457 /* CoordinatorNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorNavigationView.swift; sourceTree = "<group>"; };
-		D6099AFA27327D3D001C3457 /* DestinationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationCoordinator.swift; sourceTree = "<group>"; };
+		D67B09DE276DD82100035DED /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		D67B09E1276DD87100035DED /* CoordinatorNavigationViewLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorNavigationViewLink.swift; sourceTree = "<group>"; };
+		D67B09E5276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorNavigationViewLinkModel.swift; sourceTree = "<group>"; };
+		D67B09E8276DD8F200035DED /* NavigationStackId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStackId.swift; sourceTree = "<group>"; };
+		D67B09EB276E428700035DED /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +92,6 @@
 		D6099ACE27327A50001C3457 /* SwiftUICoordinator */ = {
 			isa = PBXGroup;
 			children = (
-				D6099AF727327D12001C3457 /* Example */,
 				D6099AE627327A69001C3457 /* Sources */,
 				D6099ACF27327A50001C3457 /* SwiftUICoordinator.h */,
 				D6099AD027327A50001C3457 /* SwiftUICoordinator.docc */,
@@ -102,9 +110,13 @@
 		D6099AE627327A69001C3457 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D67B09E4276DD88500035DED /* view-model */,
 				D6099AF327327B52001C3457 /* destination */,
 				D6099AF927327D3B001C3457 /* CoordinatorNavigationView.swift */,
-				D6099AFA27327D3D001C3457 /* DestinationCoordinator.swift */,
+				D67B09E1276DD87100035DED /* CoordinatorNavigationViewLink.swift */,
+				D67B09DE276DD82100035DED /* Coordinator.swift */,
+				D67B09E8276DD8F200035DED /* NavigationStackId.swift */,
+				D67B09EB276E428700035DED /* Debouncer.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -117,12 +129,12 @@
 			path = destination;
 			sourceTree = "<group>";
 		};
-		D6099AF727327D12001C3457 /* Example */ = {
+		D67B09E4276DD88500035DED /* view-model */ = {
 			isa = PBXGroup;
 			children = (
-				D6099AF827327D1E001C3457 /* RootCoordinator.swift */,
+				D67B09E5276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift */,
 			);
-			path = Example;
+			path = "view-model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +194,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					D6099ACB27327A50001C3457 = {
@@ -236,9 +248,12 @@
 			files = (
 				D6099AD127327A50001C3457 /* SwiftUICoordinator.docc in Sources */,
 				D6099AFE27327D77001C3457 /* CoordinatorNavigationView.swift in Sources */,
-				D6099B0227327E76001C3457 /* RootCoordinator.swift in Sources */,
+				D67B09EC276E428700035DED /* Debouncer.swift in Sources */,
+				D67B09DF276DD82100035DED /* Coordinator.swift in Sources */,
+				D67B09E6276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift in Sources */,
 				D6099AF527327B5D001C3457 /* Destination.swift in Sources */,
-				D6099AFD27327D77001C3457 /* DestinationCoordinator.swift in Sources */,
+				D67B09E9276DD8F200035DED /* NavigationStackId.swift in Sources */,
+				D67B09E2276DD87100035DED /* CoordinatorNavigationViewLink.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,9 +263,12 @@
 			files = (
 				D6099AFF27327D78001C3457 /* Destination.swift in Sources */,
 				D6099B0127327D78001C3457 /* CoordinatorNavigationView.swift in Sources */,
-				D6099B0327327E76001C3457 /* RootCoordinator.swift in Sources */,
+				D67B09ED276E428700035DED /* Debouncer.swift in Sources */,
+				D67B09E0276DD82100035DED /* Coordinator.swift in Sources */,
+				D67B09E7276DD89D00035DED /* CoordinatorNavigationViewLinkModel.swift in Sources */,
 				D6099ADC27327A50001C3457 /* SwiftUICoordinatorTests.swift in Sources */,
-				D6099B0027327D78001C3457 /* DestinationCoordinator.swift in Sources */,
+				D67B09EA276DD8F200035DED /* NavigationStackId.swift in Sources */,
+				D67B09E3276DD87100035DED /* CoordinatorNavigationViewLink.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,6 +418,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,6 +447,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

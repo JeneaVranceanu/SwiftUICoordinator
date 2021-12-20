@@ -1,5 +1,5 @@
 //
-//  SwiftUICoordinator.h
+//  CoordinatorNavigationViewLink.swift
 //  SwiftUICoordinator
 //
 //  MIT License
@@ -25,14 +25,39 @@
 //  SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+import SwiftUI
 
-//! Project version number for SwiftUICoordinator.
-FOUNDATION_EXPORT double SwiftUICoordinatorVersionNumber;
+/// Wrapper for ``NavigationLink`` that is listening to coordinator updates and makes sure
+/// 
+public struct CoordinatorNavigationViewLink<Content> : View where Content : View  {
+    
+    @StateObject private var viewModel = CoordinatorNavigationViewLinkModel()
+    @EnvironmentObject private var coordinator: Coordinator
+    
+    private var content: (Coordinator) -> Content
+    
+    public init(@ViewBuilder content: @escaping (Coordinator) -> Content) {
+        self.content = content
+    }
+    
+    public var body: some View {
+        ZStack {
+            content(coordinator)
+            
+            NavigationLink(destination: viewModel.destination(), isActive: $viewModel.isActive) {
+                EmptyView()
+            }
+        }
+        .onAppear {
+            viewModel.setCoordinator(coordinator)
+        }
+    }
+}
 
-//! Project version string for SwiftUICoordinator.
-FOUNDATION_EXPORT const unsigned char SwiftUICoordinatorVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <SwiftUICoordinator/PublicHeader.h>
-
-
+struct CoordinatorNavigationView_Previews: PreviewProvider {
+    static var previews: some View {
+        CoordinatorNavigationViewLink { _ in
+            EmptyView()
+        }
+    }
+}
