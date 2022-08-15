@@ -85,7 +85,6 @@ public class CoordinatorNavigationViewLinkModel: ObservableObject {
            !destinationWrapper.isAttached() {
             isActive = false
             self.destinationWrapper = nil
-            return
         }
         
         destinationWrapper = coordinator.destination(after: lastDestinationId)
