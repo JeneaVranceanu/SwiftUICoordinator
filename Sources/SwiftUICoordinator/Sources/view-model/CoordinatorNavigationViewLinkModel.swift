@@ -81,13 +81,13 @@ public class CoordinatorNavigationViewLinkModel: ObservableObject {
             return
         }
 
-        let newDestination = coordinator.destination(after: lastDestinationId)
+        let newDestination: DestinationWrapper? = coordinator.destination(after: lastDestinationId)
 
         if let currentDestination = destinationWrapper {
             if let newDestination = newDestination,
                currentDestination != newDestination {
                 self.destinationWrapper = newDestination
-            } else !currentDestination.isAttached() {
+            } else if !currentDestination.isAttached() {
                 self.destinationWrapper = nil
                 isActive = false
                 return
