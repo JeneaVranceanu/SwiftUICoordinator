@@ -51,13 +51,17 @@ class FirstDestinationViewModel: ObservableObject {
 
 struct FirstDestinationView: View {
 
+    static private(set) var INITIAL_DESTINATION_ID: String! = nil
+
+    @State private var destinationId = UUID().uuidString
+
     @EnvironmentObject private var secondBranchHandle: SecondBranchHandle
     @StateObject private var viewModel = FirstDestinationViewModel()
     
     var body: some View {
         CoordinatorNavigationViewLink { coordinator in
             Button {
-                coordinator.navigateTo(SecondDestinationView().asDestination())
+                coordinator.navigateTo(SecondDestinationView().asDestination(destinationId))
             } label: {
                 HStack {
                     Text("Navigate to second destination")
@@ -70,8 +74,12 @@ struct FirstDestinationView: View {
                                 lineWidth: 1)
                 )
             }.onAppear {
+                if FirstDestinationView.INITIAL_DESTINATION_ID == nil {
+                    FirstDestinationView.INITIAL_DESTINATION_ID = destinationId
+                }
+
                 secondBranchHandle.handleFunc = {
-                    coordinator.navigateTo(FirstDestinationBranchTwoView().asDestination())
+                    coordinator.navigateTo(FirstDestinationBranchTwoView().asDestination(FirstDestinationView.INITIAL_DESTINATION_ID))
                 }
             }
         }
