@@ -42,9 +42,8 @@ open class Coordinator: ObservableObject {
     
     @Published private(set) var stack: [DestinationWrapper] = []
     private lazy var destinationHandle: DestinationHandle = {
-        DestinationHandle { destinationWrapper in
-            destinationWrapper.detach(self.destinationHandle)
-            guard let idx = self.stack.firstIndex(of: destinationWrapper) else { return }
+        DestinationHandle { [weak self] destinationWrapper in
+            guard let self = self, let idx = self.stack.firstIndex(of: destinationWrapper) else { return }
             self.stack.remove(at: idx)
             self.postNotificationStackUpdate()
         }
@@ -53,14 +52,15 @@ open class Coordinator: ObservableObject {
     /**
      Debouncer for preventing multiple stack notifications in a short period of time, e.g. when popping all destinations to root.
      */
-    private lazy var stackUpdateDebouncer = {
-        Debouncer {
-            NotificationCenter.default.post(name: COORDINATOR_STACK_NOTIFICATION, object: nil, userInfo: [NAVIGATION_STACK_ID: self.id])
-        }
-    }()
+    private let stackUpdateDebouncer: Debouncer
     
     public init(id: NavigationStackId) {
         self.id = id
+        stackUpdateDebouncer = Debouncer {
+            NotificationCenter.default.post(name: COORDINATOR_STACK_NOTIFICATION,
+                                            object: nil,
+                                            userInfo: [NAVIGATION_STACK_ID: id])
+        }
     }
     
     public func getId() -> NavigationStackId {
