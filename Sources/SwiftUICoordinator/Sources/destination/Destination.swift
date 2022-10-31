@@ -65,12 +65,24 @@ public class DestinationCreator {
     }
 }
 
-public class DestinationID: ObservableObject, Equatable, Hashable {
+public class DestinationID: ObservableObject,
+                            Equatable,
+                            Hashable,
+                            CustomStringConvertible,
+                            CustomDebugStringConvertible {
     public static func == (lhs: DestinationID, rhs: DestinationID) -> Bool {
         lhs.id == rhs.id
     }
     
     public let id: String
+
+    public var description: String {
+        debugDescription
+    }
+
+    public var debugDescription: String {
+        id
+    }
     
     public init(_ id: String = UUID().uuidString) {
         self.id = id

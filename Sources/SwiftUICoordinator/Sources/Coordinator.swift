@@ -80,16 +80,33 @@ open class Coordinator: ObservableObject {
         return stack.last?.id ?? initialDestinationID
     }
     
-    /**
-     Navigates to a destination wrapped by given destination wrapper only if wrapper is not already attached to a stack.
-     */
-    public func navigateTo(_ dw: DestinationWrapper) {
-        if dw.isAttached() || stack.contains(dw) {
+
+    /// Navigates to a destination wrapped by given destination wrapper only if wrapper is not already attached to a stack.
+    /// Otherwise, performs a swap and optionally drops all destinations attached above the given one in the stack.
+    /// - Parameters:
+    ///   - destinationWrapper: the wrapped holding ID and a function to create View of the destination
+    ///   - onlySwap: if `true` and given destination is already in the stack all destinations stacked after the given one will be left in place.
+    ///   If `false` - all destination above the given one will be dropped.
+    public func navigateTo(_ destinationWrapper: DestinationWrapper,
+                           onlySwap: Bool = false) {
+        if destinationWrapper.isAttached() {
+            NSLog("Destination with ID \(destinationWrapper.id) is already attached to the screen.")
             return
         }
         
-        dw.attach(destinationHandle)
-        stack.append(dw)
+        destinationWrapper.attach(destinationHandle)
+
+        if let index = stack.firstIndex(of: destinationWrapper) {
+            let size = stack.count - 1
+            if index < size {
+                let removeCount = size - (index + 1)
+                stack[(index + 1)...size].forEach { $0.detach(destinationHandle) }
+                stack.removeLast(removeCount)
+            }
+            stack[index] = destinationWrapper
+        } else {
+            stack.append(destinationWrapper)
+        }
         
         postNotificationStackUpdate()
     }
