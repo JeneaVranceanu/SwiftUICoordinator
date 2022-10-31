@@ -97,10 +97,10 @@ open class Coordinator: ObservableObject {
         destinationWrapper.attach(destinationHandle)
 
         if let index = stack.firstIndex(of: destinationWrapper) {
-            let size = stack.count - 1
-            if index < size {
-                let removeCount = size - (index + 1)
-                stack[(index + 1)...size].forEach { $0.detach(destinationHandle) }
+            let lastIndex = stack.count - 1
+            if index < lastIndex {
+                let removeCount = lastIndex - index
+                stack[(index + 1)...lastIndex].forEach { $0.detach(destinationHandle) }
                 stack.removeLast(removeCount)
             }
             stack[index] = destinationWrapper
