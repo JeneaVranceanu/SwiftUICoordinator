@@ -1,5 +1,5 @@
 //
-//  FirstDestinationView.swift
+//  SecondDestinationBranchTwoView.swift
 //  Coordinator-Example
 //
 //  MIT License
@@ -28,14 +28,13 @@
 import SwiftUI
 import SwiftUICoordinator
 
-class FirstDestinationViewModel: ObservableObject {
+class SecondDestinationBranchTwoViewViewModel: ObservableObject {
     let id = UUID().uuidString
-    let secondDestination = SecondDestinationView().asDestination()
-    
+
     @Published var borderColor: Color = Color(red: Double.random(in: 0...1),
                                               green: Double.random(in: 0...1),
                                               blue: Double.random(in: 0...1))
-    
+
     init() {
         if TIMERS_ENABLED {
             Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
@@ -49,19 +48,18 @@ class FirstDestinationViewModel: ObservableObject {
     }
 }
 
-struct FirstDestinationView: View {
+struct SecondDestinationBranchTwoView: View {
 
-    @EnvironmentObject private var secondBranchHandle: SecondBranchHandle
-    @StateObject private var viewModel = FirstDestinationViewModel()
-    
+    @StateObject private var viewModel = SecondDestinationBranchTwoViewViewModel()
+
     var body: some View {
         CoordinatorNavigationViewLink { coordinator in
             Button {
-                coordinator.navigateTo(SecondDestinationView().asDestination())
+                coordinator.popAll()
             } label: {
                 HStack {
-                    Text("Navigate to second destination")
-                    Image(systemName: "2.square")
+                    Text("This is the end so far")
+                    Image(systemName: "figure.wave")
                 }
                 .padding()
                 .overlay(
@@ -69,17 +67,15 @@ struct FirstDestinationView: View {
                         .stroke(viewModel.borderColor,
                                 lineWidth: 1)
                 )
-            }.onAppear {
-                secondBranchHandle.handleFunc = {
-                    coordinator.navigateTo(FirstDestinationBranchTwoView().asDestination())
-                }
             }
+
         }
     }
 }
 
-struct FirstDestinationView_Previews: PreviewProvider {
+struct SecondDestinationBranchTwoView_Previews: PreviewProvider {
     static var previews: some View {
-        FirstDestinationView()
+        SecondDestinationBranchTwoView()
     }
 }
+

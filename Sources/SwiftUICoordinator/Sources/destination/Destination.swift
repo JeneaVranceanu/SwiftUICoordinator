@@ -33,7 +33,7 @@ import SwiftUI
  */
 public class DestinationHandle: Equatable {
     public static func == (lhs: DestinationHandle, rhs: DestinationHandle) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id
     }
     
     public let id = UUID()
@@ -51,12 +51,14 @@ public class DestinationHandle: Equatable {
 /**
  Wrapper for View creation.
  */
-public class DestinationCreator {
-    
+public class DestinationCreator{
+
+    internal let viewDescription: String
     private let instance: () -> AnyView
     
-    public init(_ instance: @escaping () -> AnyView) {
+    public init(_ instance: @escaping () -> AnyView, viewDescription: String) {
         self.instance = instance
+        self.viewDescription = viewDescription
     }
     
     @ViewBuilder
@@ -65,12 +67,24 @@ public class DestinationCreator {
     }
 }
 
-public class DestinationID: ObservableObject, Equatable, Hashable {
+public class DestinationID: ObservableObject,
+                            Equatable,
+                            Hashable,
+                            CustomStringConvertible,
+                            CustomDebugStringConvertible {
     public static func == (lhs: DestinationID, rhs: DestinationID) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id
     }
     
     public let id: String
+
+    public var description: String {
+        debugDescription
+    }
+
+    public var debugDescription: String {
+        id
+    }
     
     public init(_ id: String = UUID().uuidString) {
         self.id = id
@@ -86,7 +100,7 @@ public class DestinationID: ObservableObject, Equatable, Hashable {
  */
 public class DestinationWrapper: ObservableObject, Equatable, Hashable {
     public static func == (lhs: DestinationWrapper, rhs: DestinationWrapper) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.destinationCreator.viewDescription == rhs.destinationCreator.viewDescription
     }
     
     public let id: DestinationID
@@ -106,17 +120,14 @@ public class DestinationWrapper: ObservableObject, Equatable, Hashable {
         }
     }()
     
-    public init(_ destinationCreator: DestinationCreator) {
+    public init(id: DestinationID = DestinationID(), _ destinationCreator: DestinationCreator) {
+        self.id = id
         self.destinationCreator = destinationCreator
-        id = DestinationID()
     }
     
-    /**
-     If the destination is dynamic, meaning it depends on the input, make sure that this input always has the same ID.
-     */
-    public init(_ destinationCreator: DestinationCreator, id: String) {
-        self.destinationCreator = destinationCreator
-        self.id = DestinationID(id)
+    /// If the destination is dynamic, meaning it depends on the input, make sure that this input always has the same ID.
+    public convenience init(id: String, _ destinationCreator: DestinationCreator) {
+        self.init(id: DestinationID(id), destinationCreator)
     }
     
     public func isAttached() -> Bool {

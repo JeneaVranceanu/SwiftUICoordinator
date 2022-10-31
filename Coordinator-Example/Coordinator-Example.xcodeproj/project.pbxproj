@@ -17,11 +17,12 @@
 		D67B0A39276F50B400035DED /* FirstDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B0A38276F50B400035DED /* FirstDestinationView.swift */; };
 		D67B0A3B276F50BE00035DED /* SecondDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B0A3A276F50BE00035DED /* SecondDestinationView.swift */; };
 		D67B0A3D276F50C600035DED /* ThirdDestinationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B0A3C276F50C600035DED /* ThirdDestinationView.swift */; };
-		D67B0A3E276F547800035DED /* SwiftUICoordinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67B0A24276E4C8E00035DED /* SwiftUICoordinator.framework */; };
-		D67B0A3F276F547800035DED /* SwiftUICoordinator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D67B0A24276E4C8E00035DED /* SwiftUICoordinator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D67B0A42276F588600035DED /* Misc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B0A41276F588600035DED /* Misc.swift */; };
 		D67B0A64277077E200035DED /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B0A63277077E200035DED /* MainCoordinator.swift */; };
 		D67B0A66277077EA00035DED /* MainCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B0A65277077EA00035DED /* MainCoordinatorImpl.swift */; };
+		D6BE3C96290C1E5A0016A9E3 /* FirstDestinationBranchTwoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE3C95290C1E5A0016A9E3 /* FirstDestinationBranchTwoView.swift */; };
+		D6BE3C98290C1E820016A9E3 /* SecondDestinationBranchTwoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE3C97290C1E820016A9E3 /* SecondDestinationBranchTwoView.swift */; };
+		D6BE3C9D290C20C30016A9E3 /* SwiftUICoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = D6BE3C9C290C20C30016A9E3 /* SwiftUICoordinator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,20 +42,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		D67B0A40276F547800035DED /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D67B0A3F276F547800035DED /* SwiftUICoordinator.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		D67B0A0B276E4C6C00035DED /* Coordinator-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Coordinator-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D67B0A0E276E4C6C00035DED /* Coordinator_ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator_ExampleApp.swift; sourceTree = "<group>"; };
@@ -71,6 +58,8 @@
 		D67B0A41276F588600035DED /* Misc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Misc.swift; sourceTree = "<group>"; };
 		D67B0A63277077E200035DED /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		D67B0A65277077EA00035DED /* MainCoordinatorImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorImpl.swift; sourceTree = "<group>"; };
+		D6BE3C95290C1E5A0016A9E3 /* FirstDestinationBranchTwoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstDestinationBranchTwoView.swift; sourceTree = "<group>"; };
+		D6BE3C97290C1E820016A9E3 /* SecondDestinationBranchTwoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondDestinationBranchTwoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D67B0A3E276F547800035DED /* SwiftUICoordinator.framework in Frameworks */,
+				D6BE3C9D290C20C30016A9E3 /* SwiftUICoordinator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,8 +137,8 @@
 			isa = PBXGroup;
 			children = (
 				D67B0A38276F50B400035DED /* FirstDestinationView.swift */,
-				D67B0A3A276F50BE00035DED /* SecondDestinationView.swift */,
-				D67B0A3C276F50C600035DED /* ThirdDestinationView.swift */,
+				D6BE3C93290C1DF10016A9E3 /* branch-one */,
+				D6BE3C94290C1DF50016A9E3 /* branch-two */,
 			);
 			path = destinations;
 			sourceTree = "<group>";
@@ -163,6 +152,24 @@
 			path = coordinator;
 			sourceTree = "<group>";
 		};
+		D6BE3C93290C1DF10016A9E3 /* branch-one */ = {
+			isa = PBXGroup;
+			children = (
+				D67B0A3A276F50BE00035DED /* SecondDestinationView.swift */,
+				D67B0A3C276F50C600035DED /* ThirdDestinationView.swift */,
+			);
+			path = "branch-one";
+			sourceTree = "<group>";
+		};
+		D6BE3C94290C1DF50016A9E3 /* branch-two */ = {
+			isa = PBXGroup;
+			children = (
+				D6BE3C95290C1E5A0016A9E3 /* FirstDestinationBranchTwoView.swift */,
+				D6BE3C97290C1E820016A9E3 /* SecondDestinationBranchTwoView.swift */,
+			);
+			path = "branch-two";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,13 +180,15 @@
 				D67B0A07276E4C6C00035DED /* Sources */,
 				D67B0A08276E4C6C00035DED /* Frameworks */,
 				D67B0A09276E4C6C00035DED /* Resources */,
-				D67B0A40276F547800035DED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Coordinator-Example";
+			packageProductDependencies = (
+				D6BE3C9C290C20C30016A9E3 /* SwiftUICoordinator */,
+			);
 			productName = "Coordinator-Example";
 			productReference = D67B0A0B276E4C6C00035DED /* Coordinator-Example.app */;
 			productType = "com.apple.product-type.application";
@@ -208,6 +217,9 @@
 				Base,
 			);
 			mainGroup = D67B0A02276E4C6C00035DED;
+			packageReferences = (
+				D6BE3C9B290C20C20016A9E3 /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */,
+			);
 			productRefGroup = D67B0A0C276E4C6C00035DED /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -260,11 +272,13 @@
 				D67B0A34276E580A00035DED /* SecondTabView.swift in Sources */,
 				D67B0A3B276F50BE00035DED /* SecondDestinationView.swift in Sources */,
 				D67B0A36276E580F00035DED /* ThirdTabView.swift in Sources */,
+				D6BE3C96290C1E5A0016A9E3 /* FirstDestinationBranchTwoView.swift in Sources */,
 				D67B0A64277077E200035DED /* MainCoordinator.swift in Sources */,
 				D67B0A42276F588600035DED /* Misc.swift in Sources */,
 				D67B0A11276E4C6C00035DED /* ContentView.swift in Sources */,
 				D67B0A39276F50B400035DED /* FirstDestinationView.swift in Sources */,
 				D67B0A30276E580200035DED /* FirstTabView.swift in Sources */,
+				D6BE3C98290C1E820016A9E3 /* SecondDestinationBranchTwoView.swift in Sources */,
 				D67B0A66277077EA00035DED /* MainCoordinatorImpl.swift in Sources */,
 				D67B0A3D276F50C600035DED /* ThirdDestinationView.swift in Sources */,
 				D67B0A0F276E4C6C00035DED /* Coordinator_ExampleApp.swift in Sources */,
@@ -406,7 +420,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -436,7 +450,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,6 +486,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D6BE3C9B290C20C20016A9E3 /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/jeneavn/Documents/Projects/Personal/SwiftUICoordinator";
+			requirement = {
+				branch = "fix/memory-leaks";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D6BE3C9C290C20C30016A9E3 /* SwiftUICoordinator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D6BE3C9B290C20C20016A9E3 /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */;
+			productName = SwiftUICoordinator;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D67B0A03276E4C6C00035DED /* Project object */;
 }

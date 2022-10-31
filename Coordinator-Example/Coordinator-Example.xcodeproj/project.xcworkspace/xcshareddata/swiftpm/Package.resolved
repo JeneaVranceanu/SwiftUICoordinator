@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftuicoordinator",
+      "kind" : "localSourceControl",
+      "location" : ".",
+      "state" : {
+        "branch" : "fix/memory-leaks",
+        "revision" : "01a5c5505671997c181b0a88fc8d812eceecc73f"
+      }
+    }
+  ],
+  "version" : 2
+}

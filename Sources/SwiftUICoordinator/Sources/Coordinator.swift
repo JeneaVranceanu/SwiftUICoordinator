@@ -42,9 +42,8 @@ open class Coordinator: ObservableObject {
     
     @Published private(set) var stack: [DestinationWrapper] = []
     private lazy var destinationHandle: DestinationHandle = {
-        DestinationHandle { destinationWrapper in
-            destinationWrapper.detach(self.destinationHandle)
-            guard let idx = self.stack.firstIndex(of: destinationWrapper) else { return }
+        DestinationHandle { [weak self] destinationWrapper in
+            guard let self = self, let idx = self.stack.firstIndex(of: destinationWrapper) else { return }
             self.stack.remove(at: idx)
             self.postNotificationStackUpdate()
         }
@@ -53,14 +52,15 @@ open class Coordinator: ObservableObject {
     /**
      Debouncer for preventing multiple stack notifications in a short period of time, e.g. when popping all destinations to root.
      */
-    private lazy var stackUpdateDebouncer = {
-        Debouncer {
-            NotificationCenter.default.post(name: COORDINATOR_STACK_NOTIFICATION, object: nil, userInfo: [NAVIGATION_STACK_ID: self.id])
-        }
-    }()
+    private let stackUpdateDebouncer: Debouncer
     
     public init(id: NavigationStackId) {
         self.id = id
+        stackUpdateDebouncer = Debouncer {
+            NotificationCenter.default.post(name: COORDINATOR_STACK_NOTIFICATION,
+                                            object: nil,
+                                            userInfo: [NAVIGATION_STACK_ID: id])
+        }
     }
     
     public func getId() -> NavigationStackId {
@@ -80,16 +80,33 @@ open class Coordinator: ObservableObject {
         return stack.last?.id ?? initialDestinationID
     }
     
-    /**
-     Navigates to a destination wrapped by given destination wrapper only if wrapper is not already attached to a stack.
-     */
-    public func navigateTo(_ dw: DestinationWrapper) {
-        if dw.isAttached() || stack.contains(dw) {
+
+    /// Navigates to a destination wrapped by given destination wrapper only if wrapper is not already attached to a stack.
+    /// Otherwise, performs a swap and optionally drops all destinations attached above the given one in the stack.
+    /// - Parameters:
+    ///   - destinationWrapper: the wrapped holding ID and a function to create View of the destination
+    ///   - onlySwap: if `true` and given destination is already in the stack all destinations stacked after the given one will be left in place.
+    ///   If `false` - all destination above the given one will be dropped.
+    public func navigateTo(_ destinationWrapper: DestinationWrapper,
+                           onlySwap: Bool = false) {
+        if destinationWrapper.isAttached() {
+            NSLog("Destination with ID \(destinationWrapper.id) is already attached to the screen.")
             return
         }
         
-        dw.attach(destinationHandle)
-        stack.append(dw)
+        destinationWrapper.attach(destinationHandle)
+
+        if let index = stack.firstIndex(where: { $0.id == destinationWrapper.id }) {
+            let lastIndex = stack.count - 1
+            if index < lastIndex && !onlySwap {
+                let removeCount = lastIndex - index
+                stack[index + 1].detach(destinationHandle)
+                stack.removeLast(removeCount)
+            }
+            stack[index] = destinationWrapper
+        } else {
+            stack.append(destinationWrapper)
+        }
         
         postNotificationStackUpdate()
     }
@@ -99,12 +116,20 @@ open class Coordinator: ObservableObject {
      If this wrapper is not in the stack of this coordinator calling this function has no effect,
      */
     public func popTo(_ dw: DestinationWrapper) {
-        guard let index = stack.firstIndex(of: dw) else { return }
+        popTo(dw.id)
+    }
+
+    public func popTo(_ destinationId: String) {
+        popTo(DestinationID(destinationId))
+    }
+
+    public func popTo(_ destinationId: DestinationID) {
+        guard let index = stack.firstIndex(where: { $0.id == destinationId }) else { return }
         stack[index..<stack.count].forEach { destination in
             destination.detach(destinationHandle)
         }
         stack = stack.dropLast(stack.count - index)
-        
+
         postNotificationStackUpdate()
     }
     
@@ -153,8 +178,7 @@ open class Coordinator: ObservableObject {
     }
     
     public func isTopOfTheStack(_ destinationWrapper: DestinationWrapper?) -> Bool {
-        guard let destinationWrapper = destinationWrapper else { return false }
-        return (stack.firstIndex(of: destinationWrapper) ?? 0) >= stack.count-1
+        destinationWrapper != nil && stack.last?.id == destinationWrapper?.id
     }
     
     private func postNotificationStackUpdate() {

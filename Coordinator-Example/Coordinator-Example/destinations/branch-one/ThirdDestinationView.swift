@@ -4,7 +4,7 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2021 Jenea Vranceanu
+//  Copyright (c) 2022 Jenea Vranceanu
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,8 +28,33 @@
 import SwiftUI
 
 struct ThirdDestinationView: View {
+
+    /// An object that allows transmission of a request to replace the first branch with the second branch.
+    @EnvironmentObject private var secondBranchHandle: SecondBranchHandle
+
     var body: some View {
-        Text("Hello, World!\nFinally 💻☕️")
+        VStack {
+            Text("Hello, World!\nFinally 💻☕️")
+                .padding(32)
+
+            Text("or...")
+                .padding(8)
+
+            Button {
+                secondBranchHandle.handleFunc?()
+            } label: {
+                HStack {
+                    Text("Navigate to a destination on a different branch")
+                    Image(systemName: "arrow.triangle.branch")
+                }
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.gray, lineWidth: 2)
+                )
+            }
+            .padding()
+        }
     }
 }
 

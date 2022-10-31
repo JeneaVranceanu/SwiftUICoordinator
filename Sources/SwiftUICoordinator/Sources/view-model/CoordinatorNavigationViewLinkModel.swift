@@ -80,17 +80,24 @@ public class CoordinatorNavigationViewLinkModel: ObservableObject {
             // Should ignore this notification.
             return
         }
-        
-        if let destinationWrapper = destinationWrapper,
-           !destinationWrapper.isAttached() {
-            isActive = false
-            self.destinationWrapper = nil
+
+        let newDestination: DestinationWrapper? = coordinator.destination(after: lastDestinationId)
+
+        if let currentDestination = destinationWrapper {
+            if let newDestination = newDestination,
+               currentDestination != newDestination {
+                self.destinationWrapper = newDestination
+            } else if !currentDestination.isAttached() {
+                self.destinationWrapper = nil
+                isActive = false
+                return
+            }
+        } else {
+            self.destinationWrapper = newDestination
         }
-        
-        destinationWrapper = coordinator.destination(after: lastDestinationId)
-        let isActive = coordinator.isActive(destinationWrapper)
-        if isActive {
-            self.isActive = isActive
+
+        if coordinator.isActive(destinationWrapper) {
+            isActive = true
         }
     }
     
