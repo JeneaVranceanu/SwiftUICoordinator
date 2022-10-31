@@ -22,7 +22,7 @@
 		D67B0A66277077EA00035DED /* MainCoordinatorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B0A65277077EA00035DED /* MainCoordinatorImpl.swift */; };
 		D6BE3C96290C1E5A0016A9E3 /* FirstDestinationBranchTwoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE3C95290C1E5A0016A9E3 /* FirstDestinationBranchTwoView.swift */; };
 		D6BE3C98290C1E820016A9E3 /* SecondDestinationBranchTwoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BE3C97290C1E820016A9E3 /* SecondDestinationBranchTwoView.swift */; };
-		D6BE3C9D290C20C30016A9E3 /* SwiftUICoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = D6BE3C9C290C20C30016A9E3 /* SwiftUICoordinator */; };
+		D6DDE2E12910484900A0A49C /* SwiftUICoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = D6DDE2E02910484900A0A49C /* SwiftUICoordinator */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6BE3C9D290C20C30016A9E3 /* SwiftUICoordinator in Frameworks */,
+				D6DDE2E12910484900A0A49C /* SwiftUICoordinator in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +187,7 @@
 			);
 			name = "Coordinator-Example";
 			packageProductDependencies = (
-				D6BE3C9C290C20C30016A9E3 /* SwiftUICoordinator */,
+				D6DDE2E02910484900A0A49C /* SwiftUICoordinator */,
 			);
 			productName = "Coordinator-Example";
 			productReference = D67B0A0B276E4C6C00035DED /* Coordinator-Example.app */;
@@ -218,7 +218,7 @@
 			);
 			mainGroup = D67B0A02276E4C6C00035DED;
 			packageReferences = (
-				D6BE3C9B290C20C20016A9E3 /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */,
+				D6DDE2DF2910484900A0A49C /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */,
 			);
 			productRefGroup = D67B0A0C276E4C6C00035DED /* Products */;
 			projectDirPath = "";
@@ -488,20 +488,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D6BE3C9B290C20C20016A9E3 /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */ = {
+		D6DDE2DF2910484900A0A49C /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/jeneavn/Documents/Projects/Personal/SwiftUICoordinator";
+			repositoryURL = "https://github.com/JeneaVranceanu/SwiftUICoordinator.git";
 			requirement = {
-				branch = "fix/memory-leaks";
+				branch = "fix/destination-switch";
 				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D6BE3C9C290C20C30016A9E3 /* SwiftUICoordinator */ = {
+		D6DDE2E02910484900A0A49C /* SwiftUICoordinator */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D6BE3C9B290C20C20016A9E3 /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */;
+			package = D6DDE2DF2910484900A0A49C /* XCRemoteSwiftPackageReference "SwiftUICoordinator" */;
 			productName = SwiftUICoordinator;
 		};
 /* End XCSwiftPackageProductDependency section */

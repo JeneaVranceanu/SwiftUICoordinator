@@ -2,11 +2,11 @@
   "pins" : [
     {
       "identity" : "swiftuicoordinator",
-      "kind" : "localSourceControl",
-      "location" : ".",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/JeneaVranceanu/SwiftUICoordinator.git",
       "state" : {
-        "branch" : "fix/memory-leaks",
-        "revision" : "01a5c5505671997c181b0a88fc8d812eceecc73f"
+        "branch" : "fix/destination-switch",
+        "revision" : "8048130cb3373fcba52f38d5e13e190cf53e2159"
       }
     }
   ],
