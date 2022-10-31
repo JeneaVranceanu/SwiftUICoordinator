@@ -42,9 +42,8 @@ open class Coordinator: ObservableObject {
     
     @Published private(set) var stack: [DestinationWrapper] = []
     private lazy var destinationHandle: DestinationHandle = {
-        DestinationHandle { destinationWrapper in
-            destinationWrapper.detach(self.destinationHandle)
-            guard let idx = self.stack.firstIndex(of: destinationWrapper) else { return }
+        DestinationHandle { [weak self] destinationWrapper in
+            guard let self = self, let idx = self.stack.firstIndex(of: destinationWrapper) else { return }
             self.stack.remove(at: idx)
             self.postNotificationStackUpdate()
         }
