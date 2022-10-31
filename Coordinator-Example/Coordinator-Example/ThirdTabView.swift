@@ -29,11 +29,14 @@ import SwiftUI
 import SwiftUICoordinator
 
 struct ThirdTabView: View {
+
+    @StateObject private var secondBranchHandle = SecondBranchHandle()
     
     var body: some View {
         CoordinatorNavigationView { _ in
             FirstDestinationView()
         }
+        .environmentObject(secondBranchHandle)
     }
 }
 
