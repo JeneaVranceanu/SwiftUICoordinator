@@ -4,7 +4,7 @@
 //
 //  MIT License
 //
-//  Copyright (c) 2021 Jenea Vranceanu
+//  Copyright (c) 2022 Jenea Vranceanu
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,11 +28,23 @@
 import SwiftUI
 import SwiftUICoordinator
 
+class SecondBranchHandle: ObservableObject {
+
+    var handleFunc: (() -> Void)? = nil
+
+}
+
 struct FirstTabView: View {
+
+    @StateObject private var secondBranchHandle = SecondBranchHandle()
+
+    @State var isActive = false
+
     var body: some View {
         CoordinatorNavigationView { _ in
             FirstDestinationView()
         }
+        .environmentObject(secondBranchHandle)
     }
 }
 
