@@ -30,9 +30,13 @@ import Foundation
 import SwiftUI
 
 public extension View {
-    func asDestination() -> DestinationWrapper {
-        DestinationWrapper(DestinationCreator({
+    func asDestination(_ id: DestinationID) -> DestinationWrapper {
+        DestinationWrapper(id: id, DestinationCreator({
             AnyView(self)
         }))
+    }
+
+    func asDestination(_ id: String = UUID().uuidString) -> DestinationWrapper {
+        asDestination(DestinationID(id))
     }
 }
