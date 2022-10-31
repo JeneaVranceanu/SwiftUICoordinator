@@ -51,12 +51,14 @@ public class DestinationHandle: Equatable {
 /**
  Wrapper for View creation.
  */
-public class DestinationCreator {
-    
+public class DestinationCreator{
+
+    internal let viewDescription: String
     private let instance: () -> AnyView
     
-    public init(_ instance: @escaping () -> AnyView) {
+    public init(_ instance: @escaping () -> AnyView, viewDescription: String) {
         self.instance = instance
+        self.viewDescription = viewDescription
     }
     
     @ViewBuilder
@@ -98,7 +100,7 @@ public class DestinationID: ObservableObject,
  */
 public class DestinationWrapper: ObservableObject, Equatable, Hashable {
     public static func == (lhs: DestinationWrapper, rhs: DestinationWrapper) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.destinationCreator.viewDescription == rhs.destinationCreator.viewDescription
     }
     
     public let id: DestinationID

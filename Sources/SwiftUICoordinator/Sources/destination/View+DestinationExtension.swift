@@ -31,9 +31,9 @@ import SwiftUI
 
 public extension View {
     func asDestination(_ id: DestinationID) -> DestinationWrapper {
-        DestinationWrapper(id: id, DestinationCreator({
-            AnyView(self)
-        }))
+        DestinationWrapper(id: id, DestinationCreator({ AnyView(self) },
+                                                      /// `type(of:...)` doesn't look like a reliable long term solution
+                                                      viewDescription: "\(type(of: self))"))
     }
 
     func asDestination(_ id: String = UUID().uuidString) -> DestinationWrapper {

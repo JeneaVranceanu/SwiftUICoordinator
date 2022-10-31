@@ -96,7 +96,7 @@ open class Coordinator: ObservableObject {
         
         destinationWrapper.attach(destinationHandle)
 
-        if let index = stack.firstIndex(of: destinationWrapper) {
+        if let index = stack.firstIndex(where: { $0.id == destinationWrapper.id }) {
             let lastIndex = stack.count - 1
             if index < lastIndex && !onlySwap {
                 let removeCount = lastIndex - index
@@ -116,12 +116,20 @@ open class Coordinator: ObservableObject {
      If this wrapper is not in the stack of this coordinator calling this function has no effect,
      */
     public func popTo(_ dw: DestinationWrapper) {
-        guard let index = stack.firstIndex(of: dw) else { return }
+        popTo(dw.id)
+    }
+
+    public func popTo(_ destinationId: String) {
+        popTo(DestinationID(destinationId))
+    }
+
+    public func popTo(_ destinationId: DestinationID) {
+        guard let index = stack.firstIndex(where: { $0.id == destinationId }) else { return }
         stack[index..<stack.count].forEach { destination in
             destination.detach(destinationHandle)
         }
         stack = stack.dropLast(stack.count - index)
-        
+
         postNotificationStackUpdate()
     }
     
@@ -170,8 +178,7 @@ open class Coordinator: ObservableObject {
     }
     
     public func isTopOfTheStack(_ destinationWrapper: DestinationWrapper?) -> Bool {
-        guard let destinationWrapper = destinationWrapper else { return false }
-        return (stack.firstIndex(of: destinationWrapper) ?? 0) >= stack.count-1
+        destinationWrapper != nil && stack.last?.id == destinationWrapper?.id
     }
     
     private func postNotificationStackUpdate() {
