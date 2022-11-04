@@ -29,8 +29,6 @@ import SwiftUI
 import SwiftUICoordinator
 
 class FirstDestinationViewModel: ObservableObject {
-    let id = UUID().uuidString
-    let secondDestination = SecondDestinationView().asDestination()
     
     @Published var borderColor: Color = Color(red: Double.random(in: 0...1),
                                               green: Double.random(in: 0...1),
@@ -57,11 +55,13 @@ struct FirstDestinationView: View {
 
     @EnvironmentObject private var secondBranchHandle: SecondBranchHandle
     @StateObject private var viewModel = FirstDestinationViewModel()
+
+    @State private var notificationName = UUID().uuidString
     
     var body: some View {
         CoordinatorNavigationViewLink { coordinator in
             Button {
-                coordinator.navigateTo(SecondDestinationView().asDestination(destinationId))
+                coordinator.navigateTo(SecondDestinationView(notificationName: notificationName).asDestination(destinationId))
             } label: {
                 HStack {
                     Text("Navigate to second destination")
@@ -74,12 +74,20 @@ struct FirstDestinationView: View {
                                 lineWidth: 1)
                 )
             }.onAppear {
+                /// Example app is intentionally implemented in such a way that this view can be opened multiple times.
+                /// We are interested in replacing whole stack from the very bottom so `INITIAL_DESTINATION_ID` must point
+                /// to the very first view placed in stack should be replaced
                 if FirstDestinationView.INITIAL_DESTINATION_ID == nil {
                     FirstDestinationView.INITIAL_DESTINATION_ID = destinationId
                 }
 
                 secondBranchHandle.handleFunc = {
                     coordinator.navigateTo(FirstDestinationBranchTwoView().asDestination(FirstDestinationView.INITIAL_DESTINATION_ID))
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: .init(notificationName))) { _ in
+                withAnimation(.easeIn(duration: 5)) {
+                    coordinator.navigateTo(FirstDestinationBranchTwoView().asDestination(destinationId))
                 }
             }
         }

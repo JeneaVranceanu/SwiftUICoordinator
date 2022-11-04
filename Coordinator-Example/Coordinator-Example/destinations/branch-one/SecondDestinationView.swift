@@ -39,8 +39,12 @@ class SecondDestinationViewModel: ObservableObject {
     @Published var borderColor1: Color = Color(red: Double.random(in: 0...1),
                                               green: Double.random(in: 0...1),
                                               blue: Double.random(in: 0...1))
-    
+
     @Published var borderColor2: Color = Color(red: Double.random(in: 0...1),
+                                               green: Double.random(in: 0...1),
+                                               blue: Double.random(in: 0...1))
+
+    @Published var borderColor3: Color = Color(red: Double.random(in: 0...1),
                                                green: Double.random(in: 0...1),
                                                blue: Double.random(in: 0...1))
     
@@ -49,6 +53,8 @@ class SecondDestinationViewModel: ObservableObject {
     @Published var borderWidth1: CGFloat = CGFloat.random(in: 1...6)
     @Published var cornerRadius2: CGFloat = CGFloat.random(in: 0...16)
     @Published var borderWidth2: CGFloat = CGFloat.random(in: 1...6)
+    @Published var cornerRadius3: CGFloat = CGFloat.random(in: 0...16)
+    @Published var borderWidth3: CGFloat = CGFloat.random(in: 1...6)
     
     let id = UUID().uuidString
     
@@ -62,10 +68,15 @@ class SecondDestinationViewModel: ObservableObject {
                     self.borderColor2 = Color(red: Double.random(in: 0...1),
                                               green: Double.random(in: 0...1),
                                               blue: Double.random(in: 0...1))
+                    self.borderColor3 = Color(red: Double.random(in: 0...1),
+                                              green: Double.random(in: 0...1),
+                                              blue: Double.random(in: 0...1))
                     self.cornerRadius1 = CGFloat.random(in: 0...16)
                     self.borderWidth1 = CGFloat.random(in: 1...6)
                     self.cornerRadius2 = CGFloat.random(in: 0...16)
                     self.borderWidth2 = CGFloat.random(in: 1...6)
+                    self.cornerRadius3 = CGFloat.random(in: 0...16)
+                    self.borderWidth3 = CGFloat.random(in: 1...6)
                 }
             }
         }
@@ -75,7 +86,9 @@ class SecondDestinationViewModel: ObservableObject {
 struct SecondDestinationView: View {
     
     @StateObject private var viewModel = SecondDestinationViewModel()
-    
+
+    @State var notificationName: String
+
     var body: some View {
         CoordinatorNavigationViewLink { coordinator in
             VStack {
@@ -94,7 +107,7 @@ struct SecondDestinationView: View {
                     )
                 }
                 .padding()
-                
+
                 Button {
                     coordinator.navigateTo(viewModel.secondDestinationAgain)
                 } label: {
@@ -110,6 +123,24 @@ struct SecondDestinationView: View {
                     )
                 }
                 .padding()
+
+                if !notificationName.isEmpty {
+                    Button {
+                        NotificationCenter.default.post(name: NSNotification.Name(notificationName), object: self)
+                    } label: {
+                        HStack {
+                            Text("Replace this screen")
+                            Image(systemName: Bool.random() ? "3.square" : "3.square.fill")
+                        }
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: viewModel.cornerRadius3)
+                                .stroke(viewModel.borderColor3,
+                                        lineWidth: viewModel.borderWidth3)
+                        )
+                    }
+                    .padding()
+                }
             }
         }
     }
@@ -117,6 +148,6 @@ struct SecondDestinationView: View {
 
 struct SecondDestinationView_Previews: PreviewProvider {
     static var previews: some View {
-        SecondDestinationView()
+        SecondDestinationView(notificationName: "")
     }
 }

@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/JeneaVranceanu/SwiftUICoordinator.git",
       "state" : {
-        "branch" : "fix/destination-switch",
-        "revision" : "8048130cb3373fcba52f38d5e13e190cf53e2159"
+        "branch" : "development",
+        "revision" : "3afebbbdbad3d3d2402aa99f394f201f238b30a5"
       }
     }
   ],
