@@ -28,7 +28,7 @@
 import Foundation
 
 protocol MainCoordinator {
-    func navigateToSecondView(navTitle: String)
+    func navigateToSecondView(navTitle: String, notificationName: String?)
     func navigateToThirdView(navTitle: String)
 }
 

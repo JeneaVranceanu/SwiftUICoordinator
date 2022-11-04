@@ -31,9 +31,9 @@ import SwiftUICoordinator
 
 public class MainCoordinatorImpl: Coordinator, MainCoordinator {
     
-    func navigateToSecondView(navTitle: String) {
+    func navigateToSecondView(navTitle: String, notificationName: String?) {
         navigateTo(
-            SecondDestinationView()
+            SecondDestinationView(notificationName: notificationName ?? "")
                 .navigationTitle(navTitle)
                 .navigationBarTitleDisplayMode([NavigationBarItem.TitleDisplayMode.large, NavigationBarItem.TitleDisplayMode.inline].randomElement()!)
                 .asDestination()
